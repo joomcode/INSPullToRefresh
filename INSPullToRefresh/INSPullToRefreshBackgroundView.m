@@ -279,7 +279,9 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     }
     else if ([keyPath isEqualToString:@"contentInset"]) {
         // Prevent to change external content inset when infinity scroll is loading
-        if (!_updatingScrollViewContentInset && self.scrollView.ins_infiniteScrollBackgroundView.state == INSInfiniteScrollBackgroundViewStateNone) {
+        if (!_updatingScrollViewContentInset &&
+            self.scrollView.ins_infiniteScrollBackgroundView.state == INSInfiniteScrollBackgroundViewStateNone &&
+            self.scrollView.ins_pullToRefreshBackgroundView.state == INSPullToRefreshBackgroundViewStateNone) {
             self.externalContentInset = [[change valueForKey:NSKeyValueChangeNewKey] UIEdgeInsetsValue];
             [self resetFrame];
         }
