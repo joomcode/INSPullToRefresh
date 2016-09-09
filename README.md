@@ -1,4 +1,4 @@
-[![](http://inspace.io/github-cover.jpg)](http://inspace.io)
+[![](https://i.imgur.com/Wx47z9z.png)](http://inspace.io)
 
 # Introduction
 
