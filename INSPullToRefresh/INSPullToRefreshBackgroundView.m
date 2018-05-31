@@ -192,6 +192,15 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     }
 }
 
+- (void)setIndicatorView:(UIView *)indicatorView {
+    if (_indicatorView != indicatorView) {
+        _indicatorView = indicatorView;
+        if (indicatorView) {
+            [self addSubview:indicatorView];
+        }
+    }
+}
+
 #pragma mark - Observing
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -361,6 +370,14 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         self.scrollView.contentInset = contentInset;
         self.updatingScrollViewContentInset = NO;
     }
+}
+
+#pragma mark - UIVIew
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.indicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
 }
 
 #pragma mark - Utilities

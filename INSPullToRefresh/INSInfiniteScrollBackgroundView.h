@@ -51,6 +51,8 @@ typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, assign) BOOL shouldShowWhenDisabled;
 
+@property (nonatomic, strong, nullable) UIView *indicatorView;
+
 @property (nonatomic, assign) CGFloat additionalBottomOffsetForInfinityScrollTrigger;
 
 - (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView;

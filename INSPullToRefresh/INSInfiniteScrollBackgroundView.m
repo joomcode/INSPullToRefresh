@@ -76,6 +76,15 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     }
 }
 
+- (void)setIndicatorView:(UIView *)indicatorView {
+    if (_indicatorView != indicatorView) {
+        _indicatorView = indicatorView;
+        if (indicatorView) {
+            [self addSubview:indicatorView];
+        }
+    }
+}
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -343,6 +352,14 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     if (!alreadyUpdating) {
         self.updatingScrollViewContentInset = NO;
     }
+}
+
+#pragma mark - UIVIew
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.indicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
 }
 
 #pragma mark - Utilities

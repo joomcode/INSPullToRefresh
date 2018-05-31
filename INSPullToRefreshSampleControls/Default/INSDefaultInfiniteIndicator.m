@@ -26,13 +26,6 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-
-    self.center = CGPointMake(CGRectGetMidX(self.superview.bounds), CGRectGetMidY(self.superview.bounds));
-}
-
-
 - (void)didMoveToWindow {
     // CoreAnimation animations are removed when view goes offscreen.
     // So we have to restart them when view reappears.

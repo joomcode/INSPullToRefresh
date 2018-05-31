@@ -68,8 +68,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    self.center = CGPointMake(CGRectGetMidX(self.superview.bounds), CGRectGetMidY(self.superview.bounds));
-
     self.backCircleLayer.frame = self.bounds;
     self.frontCircleLayer.frame = self.bounds;
     self.pieLayer.frame = self.bounds;
