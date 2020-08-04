@@ -25,6 +25,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern CGFloat const INSPullToRefreshDefaultResetContentInsetAnimationTime;
 extern CGFloat const INSPullToRefreshDefaultDragToTriggerOffset;
 
@@ -48,12 +50,12 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 
 @interface INSPullToRefreshBackgroundView : UIView
 
-@property (nonatomic, copy) INSPullToRefreshActionHandler actionHandler;
-@property (nonatomic, weak, readonly) UIScrollView *scrollView;
+@property (nonatomic, copy, nullable) INSPullToRefreshActionHandler actionHandler;
+@property (nonatomic, weak, readonly, nullable) UIScrollView *scrollView;
 
-@property (nonatomic, weak) id <INSPullToRefreshBackgroundViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id <INSPullToRefreshBackgroundViewDelegate> delegate;
 
-@property (nonatomic, readonly) INSPullToRefreshBackgroundViewState state;
+@property (nonatomic, assign, readonly) INSPullToRefreshBackgroundViewState state;
 @property (nonatomic, assign) BOOL preserveContentInset;
 @property (nonatomic, assign) BOOL scrollToTopAfterEndRefreshing;
 @property (nonatomic, assign) BOOL shouldResetContentInsetDuringRotation; // Default YES
@@ -64,9 +66,11 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 
 @property (nonatomic, assign) BOOL enabled;
 
-- (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView;
+- (instancetype)initWithHeight:(CGFloat)height scrollView:(nullable UIScrollView *)scrollView;
 
 - (void)beginRefreshing;
 - (void)endRefreshing;
 
 @end
+
+NS_ASSUME_NONNULL_END
