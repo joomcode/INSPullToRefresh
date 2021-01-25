@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSAnimatable.h"
+#import <INSPullToRefresh/INSAnimatable.h>
 
 @interface INSDefaultInfiniteIndicator : UIView <INSAnimatable>
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;

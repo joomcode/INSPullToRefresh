@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIScrollView+INSPullToRefresh.h"
+#import <INSPullToRefresh/UIScrollView+INSPullToRefresh.h>
 
 @interface INSDefaultPullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
