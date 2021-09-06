@@ -274,6 +274,8 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     
     CGPoint offset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y);
 
+    [self changeState:INSInfiniteScrollBackgroundViewStateStopping];
+
     __weak typeof(self)weakSelf = self;
     [self setScrollViewContentInset:contentInset animated:!stopContentOffset completion:^(BOOL finished) {
         
