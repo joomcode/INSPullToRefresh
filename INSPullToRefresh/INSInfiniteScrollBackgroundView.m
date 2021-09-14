@@ -71,7 +71,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         if (_shouldShowWhenDisabled) {
             self.hidden = NO;
         } else {
-            self.hidden = (self.state == INSInfiniteScrollBackgroundViewStateNone);
+            self.hidden = (self.state == INSInfiniteScrollBackgroundViewStateHidden);
         }
     }
 }
@@ -101,7 +101,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         _externalContentInset = scrollView.contentInset;
         _additionalBottomOffsetForInfinityScrollTrigger = 0;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _state = INSInfiniteScrollBackgroundViewStateNone;
+        _state = INSInfiniteScrollBackgroundViewStateHidden;
         _preserveContentInset = NO;
         _enabled = YES;
         self.hidden = !self.shouldShowWhenDisabled;
@@ -178,7 +178,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     BOOL hasActualContent = (self.scrollView.contentSize.height > 1);
 
     if([self.scrollView isDragging] && hasActualContent && contentOffset.y > actionOffset) {
-        if(self.state == INSInfiniteScrollBackgroundViewStateNone) {
+        if(self.state == INSInfiniteScrollBackgroundViewStateHidden) {
             [self startInfiniteScroll];
         }
     }
@@ -191,7 +191,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         return;
     }
 
-    if (self.state == INSInfiniteScrollBackgroundViewStateNone) {
+    if (self.state == INSInfiniteScrollBackgroundViewStateHidden) {
         [self startInfiniteScroll];
     }
 }
@@ -200,7 +200,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 }
 
 - (void)endInfiniteScrollingWithStoppingContentOffset:(BOOL)stopContentOffset {
-    if(self.state == INSInfiniteScrollBackgroundViewStateLoading) {
+    if(self.state == INSInfiniteScrollBackgroundViewStateVisible) {
         [self stopInfiniteScrollWithStoppingContentOffset:stopContentOffset];
     }
 }
@@ -251,7 +251,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     // Save extra inset
     self.infiniteScrollBottomContentInset = extraBottomInset;
 
-    [self changeState:INSInfiniteScrollBackgroundViewStateLoading];
+    [self changeState:INSInfiniteScrollBackgroundViewStateVisible];
 
     __weak typeof(self)weakSelf = self;
     [self setScrollViewContentInset:contentInset animated:YES completion:^(BOOL finished) {
@@ -274,6 +274,8 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     
     CGPoint offset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y);
 
+    [self changeState:INSInfiniteScrollBackgroundViewStateHiding];
+
     __weak typeof(self)weakSelf = self;
     [self setScrollViewContentInset:contentInset animated:!stopContentOffset completion:^(BOOL finished) {
         
@@ -287,7 +289,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
             }
 
             [weakSelf resetScrollViewContentInsetWithCompletion:^(BOOL finished) {
-                [weakSelf changeState:INSInfiniteScrollBackgroundViewStateNone];
+                [weakSelf changeState:INSInfiniteScrollBackgroundViewStateHidden];
             }];
         }
     }];
@@ -306,7 +308,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 #pragma mark - ScrollView
 
 - (void)scrollToInfiniteIndicatorIfNeeded {
-    if(![self.scrollView isDragging] && self.state == INSInfiniteScrollBackgroundViewStateLoading) {
+    if(![self.scrollView isDragging] && self.state == INSInfiniteScrollBackgroundViewStateVisible) {
         // adjust content height for case when contentSize smaller than view bounds
         CGFloat contentHeight = [self adjustedHeightFromScrollViewContentSize];
         CGFloat height = CGRectGetHeight(self.frame);

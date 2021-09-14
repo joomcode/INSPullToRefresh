@@ -30,8 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^INSInfinityScrollActionHandler)(UIScrollView *scrollView);
 
 typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
-    INSInfiniteScrollBackgroundViewStateNone = 0,
-    INSInfiniteScrollBackgroundViewStateLoading,
+    INSInfiniteScrollBackgroundViewStateHidden = 0,
+    INSInfiniteScrollBackgroundViewStateVisible,
+    INSInfiniteScrollBackgroundViewStateHiding,
 };
 
 @class INSInfiniteScrollBackgroundView;
