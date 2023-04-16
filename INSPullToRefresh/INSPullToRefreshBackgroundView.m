@@ -174,8 +174,8 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     if (self.state != INSPullToRefreshBackgroundViewStateNone) {
         [self changeState:INSPullToRefreshBackgroundViewStateNone];
         if (self.scrollToTopAfterEndRefreshing) {
-            CGPoint originalContentOffset = CGPointMake(-_externalContentInset.left, -_externalContentInset.top);
             dispatch_async(dispatch_get_main_queue(), ^{
+                CGPoint originalContentOffset = CGPointMake(-_externalContentInset.left, -_externalContentInset.top);
                 [self.scrollView setContentOffset:originalContentOffset animated:NO];
             });
         }
