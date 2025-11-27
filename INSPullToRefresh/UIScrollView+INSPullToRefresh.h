@@ -27,12 +27,14 @@
 #import "INSPullToRefreshBackgroundView.h"
 #import "INSInfiniteScrollBackgroundView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIScrollView (INSPullToRefresh)
 
 #pragma mark - INSPullToRefresh
 
-@property (nonatomic, strong, readonly) INSPullToRefreshBackgroundView *ins_pullToRefreshBackgroundView;
-@property (nonatomic, strong, readonly) INSInfiniteScrollBackgroundView *ins_infiniteScrollBackgroundView;
+@property (nonatomic, strong, readonly, nullable) INSPullToRefreshBackgroundView *ins_pullToRefreshBackgroundView;
+@property (nonatomic, strong, readonly, nullable) INSInfiniteScrollBackgroundView *ins_infiniteScrollBackgroundView;
 
 - (void)ins_addPullToRefreshWithHeight:(CGFloat)height handler:(INSPullToRefreshActionHandler)actionHandler;
 - (void)ins_removePullToRefresh;
@@ -54,3 +56,5 @@
 - (void)ins_endInfinityScrollWithStoppingContentOffset:(BOOL)stopContentOffset;
 
 @end
+
+NS_ASSUME_NONNULL_END

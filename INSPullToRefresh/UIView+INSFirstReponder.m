@@ -10,7 +10,7 @@
 
 @implementation UIView (INSFirstReponder)
 
-- (UIViewController *)ins_firstResponderViewController {
+- (nullable UIViewController *)ins_firstResponderViewController {
     UIResponder *responder = self;
     while ([responder isKindOfClass:[UIView class]]) {
         responder = [responder nextResponder];

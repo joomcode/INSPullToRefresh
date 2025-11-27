@@ -35,7 +35,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 
 #pragma mark - Dynamic Accessors
 
-- (INSPullToRefreshBackgroundView *)ins_pullToRefreshBackgroundView {
+- (nullable INSPullToRefreshBackgroundView *)ins_pullToRefreshBackgroundView {
     return objc_getAssociatedObject(self, &INSPullToRefreshBackgroundViewKey);
 }
 
@@ -45,7 +45,7 @@ static char INSInfiniteScrollBackgroundViewKey;
                              OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (INSInfiniteScrollBackgroundView *)ins_infiniteScrollBackgroundView {
+- (nullable INSInfiniteScrollBackgroundView *)ins_infiniteScrollBackgroundView {
     return objc_getAssociatedObject(self, &INSInfiniteScrollBackgroundViewKey);
 }
 
